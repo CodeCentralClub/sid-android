@@ -1,0 +1,9 @@
+<resources>
+
+    <style name="Theme.Sid" parent="Theme.MaterialComponents.Light">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorSecondary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>.
+
+</resources>
