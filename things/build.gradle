@@ -20,14 +20,26 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            assets.srcDirs = ['./assets']
+        }
+    }
+    // Required to enable TF Lite to read model files directly from assets/
+    aaptOptions {
+        noCompress "tflite"
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':shared')
 
+    implementation 'org.tensorflow:tensorflow-lite:0.1.7'
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     compileOnly 'com.google.android.things:androidthings:1.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
 }
