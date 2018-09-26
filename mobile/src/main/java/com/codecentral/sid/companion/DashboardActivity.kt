@@ -1,8 +1,9 @@
-package com.codecentral.sid
+package com.codecentral.sid.companion
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.codecentral.sid.ui.dashboard.DashboardFragment
+import com.codecentral.sid.R
+import com.codecentral.sid.companion.ui.dashboard.DashboardFragment
 
 class DashboardActivity : AppCompatActivity() {
 

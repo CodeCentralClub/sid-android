@@ -1,4 +1,4 @@
-package com.codecentral.sid.ui.dashboard
+package com.codecentral.sid.companion.ui.dashboard
 
 import androidx.lifecycle.ViewModel
 

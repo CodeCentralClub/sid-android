@@ -1,4 +1,4 @@
-package com.codecentral.sid.ui.dashboard
+package com.codecentral.sid.companion.ui.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
