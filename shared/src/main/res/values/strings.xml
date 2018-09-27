@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Sid Shared</string>
 
+    <string name="template_connection_status">Status: %s</string>
+
     <string name="nearby_status_connecting">Connecting</string>
+    <string name="nearby_status_searching">Searching for devices…</string>
+    <string name="nearby_status_advertising">Advertising to devices…</string>
     <string name="nearby_status_not_connected">Not connected</string>
     <string name="nearby_status_connected">Connected</string>
 </resources>
