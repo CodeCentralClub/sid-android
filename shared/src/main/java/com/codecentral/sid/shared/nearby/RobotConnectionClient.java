@@ -1,39 +1,75 @@
 package com.codecentral.sid.shared.nearby;
 
-import android.content.Context;
-import androidx.annotation.NonNull;
-import com.google.android.gms.nearby.Nearby;
-import com.google.android.gms.nearby.connection.*;
+import androidx.lifecycle.LiveData;
+import com.codecentral.sid.shared.command.CommandState;
+import com.codecentral.sid.shared.command.RobotCommand;
 
-public class RobotConnectionClient {
+import java.io.InputStream;
+import java.util.List;
 
-    private static final String SERVICE_NICKNAME = "Sid the Robot";
-    private final ConnectionsClient client;
-    private ConnectionLifecycleCallback callback;
+/**
+ * A client that can advertise and receive connections to and from a robot.
+ */
+public interface RobotConnectionClient {
 
-    public RobotConnectionClient(Context context) {
-        client = Nearby.getConnectionsClient(context);
-        callback = new ConnectionLifecycleCallback() {
-            @Override
-            public void onConnectionInitiated(@NonNull String s, @NonNull ConnectionInfo connectionInfo) {
+    /**
+     * Looks for endpoints to connect.
+     *
+     * @return An updating list of currently available endpoints
+     */
+    LiveData<List<String>> findEndpoints();
 
-            }
+    /**
+     * Stops looking for available endpoints.
+     * <p>
+     * Should be called when a successful connection have been established.
+     */
+    void stopFindingEndpoints();
 
-            @Override
-            public void onConnectionResult(@NonNull String s, @NonNull ConnectionResolution connectionResolution) {
+    /**
+     * Begins advertising availability to other clients.
+     */
+    void beginAdvertising(String nickname);
 
-            }
+    /**
+     * Ends advertising availability to other clients.
+     */
+    void stopAdvertising();
 
-            @Override
-            public void onDisconnected(@NonNull String s) {
+    /**
+     * Begins connecting to the given device endpoint.
+     *
+     * @param endpointId The device to attempt a connection
+     * @return A {@link LiveData} object representing the current connection
+     * state
+     */
+    LiveData<ConnectionStatus> connect(String nickname, String endpointId);
 
-            }
-        };
-    }
+    /**
+     * Allows another device to establish a connnection to this device.
+     *
+     * @param endpointId The device attempting to start a connection
+     */
+    void acceptConnection(String endpointId);
 
-    public void startAdvertising(String nickname) {
-        client.startAdvertising(nickname, SERVICE_NICKNAME, callback, new AdvertisingOptions.Builder()
-                .setStrategy(Strategy.P2P_POINT_TO_POINT)
-                .build());
-    }
+    /**
+     * Disconnects from the given endpoint.
+     *
+     * @param endpointId The device to disconnect
+     * @return The current status of the connection
+     */
+    LiveData<ConnectionStatus> disconnect(String endpointId);
+
+    /**
+     * Sends a video stream to the currently connected device.
+     *
+     * @param stream A stream to be viewed on a connected device.
+     * @return True if the stream could be sent to the connected device.
+     */
+    LiveData<Boolean> sendVideo(InputStream stream);
+
+    /**
+     * Queues the given command to be executed
+     */
+    LiveData<CommandState> sendCommand(RobotCommand command);
 }
