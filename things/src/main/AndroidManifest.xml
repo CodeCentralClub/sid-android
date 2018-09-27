@@ -2,18 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.codecentral.sid">
 
+    <uses-permission android:name="com.google.android.things.permission.USE_PERIPHERAL_IO" />
+
     <application
+            android:name=".SidRobotApplication"
             android:label="@string/app_name"
             android:theme="@style/Theme.Sid">
 
         <uses-library android:name="com.google.android.things"/>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+                android:theme="@style/Theme.Sid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+
             <!-- Make this the first activity that is displayed when the device boots. -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
