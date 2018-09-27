@@ -13,10 +13,10 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "String", "ENDPOINT_NAME", "Sid the Robot (Base)"
+            buildConfigField "String", "DEVICE_NICKNAME", "Sid the Robot (Base)"
         }
         debug {
-            buildConfigField "String", "ENDPOINT_NAME", "Sid the Robot (Base)"
+            buildConfigField "String", "DEVICE_NICKNAME", "Sid the Robot (Base)"
         }
     }
     compileOptions {
