@@ -46,7 +46,7 @@ public interface RobotConnectionClient {
     LiveData<ConnectionStatus> connect(String nickname, String endpointId);
 
     /**
-     * Allows another device to establish a connnection to this device.
+     * Allows another device to establish a connection to this device.
      *
      * @param endpointId The device attempting to start a connection
      */
@@ -72,4 +72,16 @@ public interface RobotConnectionClient {
      * Queues the given command to be executed
      */
     LiveData<CommandState> sendCommand(RobotCommand command);
+
+    /**
+     * Returns true if this client is advertising to endpoint devices, false
+     * otherwise.
+     */
+    boolean isAdvertising();
+
+    /**
+     * Returns true if this client is looking for endpoint devices, false
+     * otherwise.
+     */
+    boolean isDiscovering();
 }

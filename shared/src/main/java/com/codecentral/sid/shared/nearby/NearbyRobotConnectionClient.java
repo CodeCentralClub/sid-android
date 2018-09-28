@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
+/**
+ * A {@link RobotConnectionClient} that uses {@link Nearby} Connections to
+ * communicate between devices.
+ */
 public class NearbyRobotConnectionClient implements RobotConnectionClient {
 
     public static final String SERVICE_ID = "com.codecentral.sid";
@@ -42,7 +46,7 @@ public class NearbyRobotConnectionClient implements RobotConnectionClient {
 
     /**
      * @param context The application context
-     * @see this(Context, Executor)
+     * @see NearbyRobotConnectionClient(Context, Executor)
      */
     public NearbyRobotConnectionClient(Context context) {
         this(context, new HandlerExecutor(new Handler(context.getMainLooper())));
@@ -97,7 +101,7 @@ public class NearbyRobotConnectionClient implements RobotConnectionClient {
             public void onEndpointFound(@NonNull String endpointId,
                                         @NonNull DiscoveredEndpointInfo discoveredEndpointInfo) {
                 addEndpoint(endpointId);
-                acceptConnection(endpointId);
+//                acceptConnection(endpointId);
             }
 
             @Override
@@ -132,7 +136,7 @@ public class NearbyRobotConnectionClient implements RobotConnectionClient {
                 .addOnFailureListener(executor, exception -> {
                     // TODO(logging): Log failure
                 });
-        // Adding endpoints to LiveData is handled
+        // Adding endpoints to LiveData is handled in callbacks
         return endpoints;
     }
 
@@ -158,8 +162,8 @@ public class NearbyRobotConnectionClient implements RobotConnectionClient {
 
     @Override
     public void stopAdvertising() {
-        isAdvertising = false;
         client.stopAdvertising();
+        isAdvertising = false;
     }
 
     @Override
@@ -171,6 +175,7 @@ public class NearbyRobotConnectionClient implements RobotConnectionClient {
                 .addOnFailureListener(executor, exception -> {
                     // TODO(logging): Log failures
                 });
+        // Status is updated in callbacks
         return status;
     }
 
@@ -223,10 +228,12 @@ public class NearbyRobotConnectionClient implements RobotConnectionClient {
         return data;
     }
 
+    @Override
     public boolean isAdvertising() {
         return isAdvertising;
     }
 
+    @Override
     public boolean isDiscovering() {
         return isDiscovering;
     }
