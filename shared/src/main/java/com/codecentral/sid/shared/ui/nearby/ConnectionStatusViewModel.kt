@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.codecentral.sid.shared.BuildConfig
 import com.codecentral.sid.shared.SidBaseApplication
 import com.codecentral.sid.shared.nearby.ConnectionStatus
 import com.codecentral.sid.shared.nearby.NearbyRobotConnectionClient
@@ -17,6 +16,8 @@ import com.codecentral.sid.shared.nearby.RobotConnectionClient
  */
 class ConnectionStatusViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val nickname = (application as SidBaseApplication).clientNickname
+
     private val connectionClient: RobotConnectionClient =
             (application as SidBaseApplication).connectionClient
 
@@ -25,11 +26,29 @@ class ConnectionStatusViewModel(application: Application) : AndroidViewModel(app
     val status: LiveData<ConnectionStatus>
         get() = _status
 
+    private val _endpoints = MutableLiveData<List<String>>()
+
+    val endpoints: LiveData<List<String>>
+        get() = _endpoints
+
     fun startDiscovery() {
-        connectionClient.beginAdvertising(BuildConfig.DEVICE_NICKNAME)
+        connectionClient.findEndpoints()
+    }
+
+    fun stopDiscovery() {
+        connectionClient.stopFindingEndpoints()
     }
 
     fun startConnection() {
-        connectionClient.connect(BuildConfig.DEVICE_NICKNAME, NearbyRobotConnectionClient.SERVICE_ID)
+        connectionClient.connect(nickname, NearbyRobotConnectionClient.SERVICE_ID)
     }
+
+    fun startAdvertising() {
+        connectionClient.beginAdvertising(nickname)
+    }
+
+    fun stopAdvertising() {
+        connectionClient.stopAdvertising()
+    }
+
 }
