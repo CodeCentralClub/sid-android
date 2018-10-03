@@ -238,6 +238,11 @@ public class NearbyRobotConnectionClient implements RobotConnectionClient {
         return isDiscovering;
     }
 
+    @Override
+    public LiveData<ConnectionStatus> observeConnectionStatus() {
+        return status;
+    }
+
     private void removeEndpoint(String endpointId) {
         if (endpoints.getValue() == null) {
             return;

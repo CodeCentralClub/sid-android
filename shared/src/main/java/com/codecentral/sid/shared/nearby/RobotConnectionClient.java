@@ -84,4 +84,11 @@ public interface RobotConnectionClient {
      * otherwise.
      */
     boolean isDiscovering();
+
+    /**
+     * Observes the connection state of this device.
+     *
+     * @return An observable representing the connection state of this device.
+     */
+    LiveData<ConnectionStatus> observeConnectionStatus();
 }
