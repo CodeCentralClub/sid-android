@@ -122,6 +122,9 @@ public class NearbyRobotConnectionClient implements RobotConnectionClient {
 
             }
         };
+
+        status.setValue(ConnectionStatus.NOT_CONNECTED);
+        endpoints.setValue(new ArrayList<>());
     }
 
     @Override

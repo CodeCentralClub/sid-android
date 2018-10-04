@@ -1,9 +1,10 @@
 <resources>
 
-    <style name="Theme.Sid" parent="Theme.MaterialComponents.Light">
+    <!-- The primary theme for Sid dashboard/console UI -->
+    <style name="Theme.Sid" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorSecondary">@color/secondaryColor</item>
-    </style>.
+    </style>
 
 </resources>
