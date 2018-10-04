@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
-import com.codecentral.sid.R
+import com.codecentral.sid.companion.R
 
 class DashboardFragment : Fragment() {
 
@@ -17,9 +17,8 @@ class DashboardFragment : Fragment() {
     private lateinit var viewModel: DashboardViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.dashboard_fragment, container, false)
-    }
+                              savedInstanceState: Bundle?): View =
+            inflater.inflate(R.layout.dashboard_fragment, container, false)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
