@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.codecentral.sid">
 
-    <uses-permission android:name="com.google.android.things.permission.USE_PERIPHERAL_IO" />
+    <uses-permission android:name="com.google.android.things.permission.USE_PERIPHERAL_IO"/>
 
     <application
             android:name=".SidRobotApplication"
@@ -11,7 +11,8 @@
 
         <uses-library android:name="com.google.android.things"/>
 
-        <activity android:name=".MainActivity"
+        <activity
+                android:name=".MainActivity"
                 android:theme="@style/Theme.Sid">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -27,6 +28,17 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+
+        <activity
+                android:name=".ui.RobotPairingActivity"
+                android:parentActivityName=".MainActivity"
+                android:theme="@style/Theme.Sid">
+            <intent-filter>
+                <action android:name="com.codecentral.sid.action.START_PAIRING" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

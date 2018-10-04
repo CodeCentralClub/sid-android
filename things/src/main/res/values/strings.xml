@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Sid the Self-Driving Robot</string>
+    <string name="pairing_start">Start pairing</string>
+    <string name="pairing_connect">Connect</string>
 </resources>
