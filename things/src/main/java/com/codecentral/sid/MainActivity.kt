@@ -1,7 +1,14 @@
 package com.codecentral.sid
 
-import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
+import com.codecentral.sid.shared.nearby.ConnectionStatus
+import com.codecentral.sid.ui.RobotPairingActivity
+import com.codecentral.sid.ui.home.HomeViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  * Skeleton of an Android Things activity.
@@ -23,10 +30,46 @@ import android.os.Bundle
  * @see <a href="https://github.com/androidthings/contrib-drivers#readme">https://github.com/androidthings/contrib-drivers#readme</a>
  *
  */
-class MainActivity : Activity() {
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var viewModel: HomeViewModel
+
+    companion object {
+        const val RC_PAIR = 100
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        viewModel = ViewModelProviders.of(this).get(HomeViewModel::class.java)
+        @StringRes
+        val statusText: Int = when (viewModel.connectionState.value ?: return) {
+            ConnectionStatus.NOT_CONNECTED -> {
+                start_connection_button.isEnabled = true
+                start_connection_button.setOnClickListener { startPairing() }
+                R.string.nearby_status_not_connected
+            }
+            ConnectionStatus.CONNECTED -> {
+                start_connection_button.isEnabled = false
+                start_connection_button.setOnClickListener(null)
+                R.string.nearby_status_connected
+            }
+            ConnectionStatus.SEARCHING -> {
+                R.string.nearby_status_searching
+            }
+            ConnectionStatus.CONNECTING -> {
+                R.string.nearby_status_connecting
+            }
+            else -> {
+                throw IllegalStateException("Unknown connection status")
+            }
+        }
+        connection_status.text = getString(statusText)
+    }
+
+    private fun startPairing() {
+        val intent = Intent(this, RobotPairingActivity::class.java)
+        startActivityForResult(intent, RC_PAIR)
     }
 }
