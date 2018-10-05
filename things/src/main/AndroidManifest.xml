@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.codecentral.sid">
+          package="com.codecentral.sid.robot">
 
     <uses-permission android:name="com.google.android.things.permission.USE_PERIPHERAL_IO"/>
 
@@ -30,7 +30,7 @@
         </activity>
 
         <activity
-                android:name=".ui.RobotPairingActivity"
+                android:name="com.codecentral.sid.robot.ui.RobotPairingActivity"
                 android:parentActivityName=".MainActivity"
                 android:theme="@style/Theme.Sid">
             <intent-filter>

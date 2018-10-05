@@ -1,4 +1,4 @@
-package com.codecentral.sid;
+package com.codecentral.sid.robot;
 
 import com.codecentral.sid.shared.SidBaseApplication;
 import com.codecentral.sid.shared.nearby.NearbyRobotConnectionClient;

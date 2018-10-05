@@ -1,4 +1,4 @@
-package com.codecentral.sid.peripherals.serial;
+package com.codecentral.sid.robot.peripherals.serial;
 
 import com.google.android.things.pio.PeripheralManager;
 import com.google.android.things.pio.UartDevice;

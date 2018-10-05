@@ -1,13 +1,13 @@
-package com.codecentral.sid
+package com.codecentral.sid.robot
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import com.codecentral.sid.robot.ui.RobotPairingActivity
+import com.codecentral.sid.robot.ui.home.HomeViewModel
 import com.codecentral.sid.shared.nearby.ConnectionStatus
-import com.codecentral.sid.ui.RobotPairingActivity
-import com.codecentral.sid.ui.home.HomeViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**

@@ -1,4 +1,4 @@
-package com.codecentral.sid.ui
+package com.codecentral.sid.robot.ui
 
 import android.app.Application
 import androidx.lifecycle.LiveData

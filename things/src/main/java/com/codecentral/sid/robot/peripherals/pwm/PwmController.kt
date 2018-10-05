@@ -1,4 +1,4 @@
-package com.codecentral.sid.peripherals.pwm
+package com.codecentral.sid.robot.peripherals.pwm
 
 interface PwmController {
 

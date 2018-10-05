@@ -1,11 +1,10 @@
-package com.codecentral.sid.ui
+package com.codecentral.sid.robot.ui
 
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.codecentral.sid.R
 import com.codecentral.sid.shared.ui.nearby.adapter.EndpointRecyclerAdapter
 import com.codecentral.sid.shared.ui.nearby.adapter.EndpointSelectionListener
 import kotlinx.android.synthetic.main.activity_robot_pairing.*
